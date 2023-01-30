@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import Loading from "./Loading";
 import routeJson from "./../data/route.json"
 
+
 import data from '../data/Mydata';
 //import features from '../data/batiments.json';
 import L from "leaflet";
@@ -177,7 +178,6 @@ const MyMap = () => {
 
     </div>
   );
-
 }
 
 export default MyMap;
