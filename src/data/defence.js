@@ -1,0 +1,48 @@
+const defences = [
+	{
+		id: "1",
+		studentName: "Mewoabi Joe",
+		defenceTopic: "Automising a native banking system",
+		jury: ["Pr. Batchakui", "Dr. Chana", "Pr. Djotio", "Pr. Buetou"],
+		date: new Date("2023-07-20"),
+		location: "1",
+		time: "08:00",
+	},
+	{
+		id: "2",
+		studentName: "Guefa Valdes",
+		defenceTopic: "AI implemented tutor",
+		jury: ["Pr. Batchakui", "Dr. Chana", "Pr. Djotio", "Pr. Buetou"],
+		date: new Date("2023-07-19"),
+		location: "2",
+		time: "13:00",
+	},
+	{
+		id: "3",
+		studentName: "Nfor Gildas",
+		defenceTopic: "Cloud computing and securing containerised systems",
+		jury: ["Pr. Batchakui", "Dr. Chana", "Pr. Djotio", "Pr. Buetou"],
+		date: new Date("2023-07-21"),
+		location: "3",
+		time: "08:00",
+	},
+	{
+		id: "4",
+		studentName: "Kamsu Kom",
+		defenceTopic: "Data Encrypted Police Security system",
+		jury: ["Pr. Batchakui", "Dr. Chana", "Pr. Djotio", "Pr. Buetou"],
+		date: new Date("2023-07-22"),
+		location: "4",
+		time: "13:00",
+	},
+	{
+		id: "5",
+		studentName: "Nyongo Gislain",
+		defenceTopic: "Interconnected distributed systems for learning automisation",
+		jury: ["Pr. Batchakui", "Dr. Chana", "Pr. Djotio", "Pr. Buetou"],
+		date: new Date("2023-07-18"),
+		location: "5",
+		time: "08:00",
+	},
+];
+export default defences;

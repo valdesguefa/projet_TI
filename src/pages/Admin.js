@@ -1,12 +1,34 @@
 import { AccessTime, History, Update } from "@mui/icons-material";
-import { Box, Chip, Paper, Stack } from "@mui/material";
-import React, { useEffect, useRef, useState } from "react";
+import Box from "@mui/material/Box";
+import Chip from "@mui/material/Chip";
+import Paper from "@mui/material/Paper";
+import Stack from "@mui/material/Stack";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import RoomIcon from "@mui/icons-material/Room";
 import { purple, grey } from "@mui/material/colors";
+import theDefences from "../data/defence";
+import { DrawerOpenContext } from "../components/Layout";
+import { Button } from "@mui/material";
+import { DefenceContext } from "../contexts/defenceContext";
 
 function Admin() {
+	const { drawerOpen, setDrawerOpen, setDrawerContent } = useContext(DrawerOpenContext);
+	const { defences, defenceDispatch } = useContext(DefenceContext);
+
 	const hoverColor = purple[200];
 	const classColor = grey[500];
+
+	useEffect(() => {
+		initialiseDefences();
+	}, []);
+
+	const initialiseDefences = () => {
+		defenceDispatch({
+			type: "INITIALIZE_DEFENCES",
+			payload: theDefences,
+		});
+		console.log("theDefences", theDefences);
+	};
 
 	const chipRef = useRef(null);
 	const [chipRadius, setChipRadius] = useState("16px");
@@ -28,17 +50,32 @@ function Admin() {
 		},
 	};
 
+	const openDrawerWithPassedDefenceList = () => {
+		setDrawerContent({ name: "defenceList", title: "Les soutenances qui sont passées" });
+		setDrawerOpen(true);
+	};
+
+	const openDrawerWithTodaysDefenceList = () => {
+		setDrawerContent({ name: "defenceList", title: "Les soutenances d'aujourd'hui" });
+		setDrawerOpen(true);
+	};
+
+	const openDrawerWithFutureDefenceList = () => {
+		setDrawerContent({ name: "defenceList", title: "Les soutenances à venir" });
+		setDrawerOpen(true);
+	};
+
 	return (
 		<>
 			<Box width="300px" margin="0px auto" position="relative" bottom="15px">
 				<Stack direction="row" justifyContent="space-between">
-					<Paper elevation={4} sx={{ borderRadius: chipRadius }}>
+					<Paper elevation={4} sx={{ borderRadius: chipRadius }} onClick={openDrawerWithPassedDefenceList}>
 						<Chip icon={<History />} sx={{ "&:hover": { backgroundColor: hoverColor } }} label="Passée" ref={chipRef} />
 					</Paper>
-					<Paper elevation={4} sx={{ borderRadius: chipRadius }}>
-						<Chip icon={<AccessTime />} sx={{ "&:hover": { backgroundColor: hoverColor } }} label="En cours" />
+					<Paper elevation={4} sx={{ borderRadius: chipRadius }} onClick={openDrawerWithTodaysDefenceList}>
+						<Chip icon={<AccessTime />} sx={{ "&:hover": { backgroundColor: hoverColor } }} label="Aujourd'hui" />
 					</Paper>
-					<Paper elevation={4} sx={{ borderRadius: chipRadius }}>
+					<Paper elevation={4} sx={{ borderRadius: chipRadius }} onClick={openDrawerWithFutureDefenceList}>
 						<Chip icon={<Update />} sx={{ "&:hover": { backgroundColor: hoverColor } }} label="Future" />
 					</Paper>
 				</Stack>

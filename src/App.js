@@ -15,18 +15,24 @@ import Admin from "./pages/Admin";
 import Layout from "./components/Layout";
 import MyMap from "./components/MyMap";
 import Landing from "./pages/Landing";
+import DrawerContextProvider from "./contexts/drawerContext";
+import DefenceContextProvider from "./contexts/defenceContext";
 
 function App() {
 	return (
 		<div className="App">
 			<BrowserRouter>
-				<Layout>
-					<Routes>
-						{/* <Route path="/" element={<MyMap />} />
+				{/* <DrawerContextProvider> */}
+				<DefenceContextProvider>
+					<Layout>
+						<Routes>
+							{/* <Route path="/" element={<MyMap />} />
           <Route path="/" element={<Landing />} /> */}
-						<Route path="/" element={<Admin />} />
-					</Routes>
-				</Layout>
+							<Route path="/" element={<Admin />} />
+						</Routes>
+					</Layout>
+				</DefenceContextProvider>
+				{/* </DrawerContextProvider> */}
 			</BrowserRouter>
 		</div>
 	);

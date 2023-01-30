@@ -4,11 +4,15 @@ import AppBar from "@mui/material/AppBar";
 import { styled, alpha } from "@mui/material/styles";
 
 import IconButton from "@mui/material/IconButton";
+import { useTheme } from "@mui/material/styles";
 
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchIcon from "@mui/icons-material/Search";
+import AddIcon from "@mui/icons-material/Add";
+import ListIcon from "@mui/icons-material/List";
+import { Button, useMediaQuery } from "@mui/material";
 
 const Search = styled("div")(({ theme }) => ({
 	position: "relative",
@@ -54,7 +58,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 	},
 }));
 
-const TopBar = ({ drawerWidth, handleDrawerToggle }) => {
+const TopBar = ({ drawerWidth, handleDrawerToggle, setDrawerOpen, setDrawerContent }) => {
+	const theme = useTheme();
+
+	const isDrawer = useMediaQuery(theme.breakpoints.down("sm"));
+	const downMd = useMediaQuery(theme.breakpoints.down("md"));
+
+	const openDrawerWithCreateDefenceForm = () => {
+		setDrawerContent({ name: "addForm", title: "Créez une nouvelle soutenance" });
+		setDrawerOpen(true);
+	};
+
+	const openDrawerWithDefenceList = () => {
+		setDrawerContent({ name: "defenceList", title: "Toutes les soutenances" });
+		setDrawerOpen(true);
+	};
+
+	const getDrawerWidthForLargeScreens = (equivalentRightIconPixelsFormRight) => {
+		const intValue = drawerWidth + equivalentRightIconPixelsFormRight + 3;
+		// +3 just to move it abit further from left
+		return `${intValue}px`;
+	};
 	return (
 		<AppBar
 			position="fixed"
@@ -68,20 +92,37 @@ const TopBar = ({ drawerWidth, handleDrawerToggle }) => {
 					color="inherit"
 					aria-label="open drawer"
 					edge="start"
-					onClick={handleDrawerToggle}
-					sx={{ mr: "auto", display: { md: "none" }, position: "fixed", right: "10px", top: "8px" }}
+					onClick={openDrawerWithDefenceList}
+					sx={{ position: "fixed", left: downMd ? "10px" : getDrawerWidthForLargeScreens(10), top: "8px" }}
 				>
-					<MenuIcon />
+					<ListIcon />
 				</IconButton>
-				{/* <Typography variant="h6" noWrap component="div">
+				<IconButton
+					color="inherit"
+					aria-label="open drawer"
+					edge="start"
+					onClick={openDrawerWithCreateDefenceForm}
+					sx={{ mr: "auto", position: "fixed", right: "10px", top: "8px" }}
+				>
+					<AddIcon />
+				</IconButton>
+				<Typography variant="h6" noWrap component="div">
 					Po Soutenance
-				</Typography> */}
-				<Search>
-					<SearchIconWrapper>
-						<SearchIcon />
+				</Typography>
+
+				{/* <Search
+					sx={{
+						maxWidth: isDrawer ? "350px" : null,
+					}}
+				>
+					<SearchIconWrapper >
+						<SearchIcon sx={{ "&:hover": { color: "secondary.main", cursor: "pointer" } }} />
 					</SearchIconWrapper>
 					<StyledInputBase placeholder="Search…" inputProps={{ "aria-label": "search" }} />
-				</Search>
+					<Button variant="contained" sx={{ color: "white", zIndex: 100, width: "10px" }}>
+						<Typography variant="caption">Search</Typography>
+					</Button>
+				</Search> */}
 			</Toolbar>
 		</AppBar>
 	);
