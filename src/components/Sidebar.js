@@ -59,6 +59,7 @@ const Sidebar = ({
 				<div style={{ width: "380px", marginLeft: "auto", marginRight: "auto" }}>
 					{!drawerContent && (
 						<DefenceList
+							isInitialLoad={true}
 							content={"Toutes les soutenances"}
 							drawerOpen={drawerOpen}
 							setDrawerOpen={setDrawerOpen}

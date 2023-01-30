@@ -9,7 +9,7 @@ import CardActions from "@mui/material/CardActions";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 
-const DefenceList = ({ content, setDrawerContent }) => {
+const DefenceList = ({ content, setDrawerContent, isInitialLoad }) => {
 	const { defences, defenceDispatch } = useContext(DefenceContext);
 	const [arrayToMapThrough, setArrayToMapThrough] = useState(defences);
 	const [pastDefences, setPastDefences] = useState([]);
@@ -27,6 +27,12 @@ const DefenceList = ({ content, setDrawerContent }) => {
 	}, [defences]);
 
 	const filterDefences = () => {
+		console.log("isInitialLoad", isInitialLoad);
+		// if (isInitialLoad) {
+		// 	setTimeout(() => {
+		// 		setArrayToMapThrough(defences);
+		// 	}, 2000);
+		// }
 		if (defences.length) {
 			const today = new Date("2023-07-20");
 			// const today = new Date( );

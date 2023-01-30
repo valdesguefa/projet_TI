@@ -10,6 +10,7 @@ import theDefences from "../data/defence";
 import { DrawerOpenContext } from "../components/Layout";
 import { Button } from "@mui/material";
 import { DefenceContext } from "../contexts/defenceContext";
+import MyMap from "../components/MyMap";
 
 function Admin() {
 	const { drawerOpen, setDrawerOpen, setDrawerContent } = useContext(DrawerOpenContext);
@@ -80,7 +81,7 @@ function Admin() {
 					</Paper>
 				</Stack>
 			</Box>
-			<Stack direction="row" justifyContent="space-evenly" height="80vh">
+			{/* <Stack direction="row" justifyContent="space-evenly" height="80vh">
 				<Box sx={{ ...boxStyle, alignSelf: "flex-start" }}>
 					<Box component="span">Salle 1</Box>{" "}
 					<RoomIcon color="warning" sx={{ position: "relative", bottom: "30px", left: "20px" }} />
@@ -101,7 +102,8 @@ function Admin() {
 					<Box component="span">Salle 5</Box>{" "}
 					<RoomIcon color="warning" sx={{ position: "relative", bottom: "40px", left: "20px" }} />
 				</Box>
-			</Stack>
+			</Stack> */}
+			<MyMap />
 		</>
 	);
 }

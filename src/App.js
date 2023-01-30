@@ -24,13 +24,20 @@ function App() {
 			<BrowserRouter>
 				{/* <DrawerContextProvider> */}
 				<DefenceContextProvider>
-					<Layout>
-						<Routes>
-							{/* <Route path="/" element={<MyMap />} />
+					<Routes>
+						{/* <Route path="/" element={<MyMap />} />
           <Route path="/" element={<Landing />} /> */}
-							<Route path="/" element={<Admin />} />
-						</Routes>
-					</Layout>
+						<Route path="/" element={<Landing />} />
+
+						<Route
+							path="/interface"
+							element={
+								<Layout>
+									<Admin />
+								</Layout>
+							}
+						/>
+					</Routes>
 				</DefenceContextProvider>
 				{/* </DrawerContextProvider> */}
 			</BrowserRouter>
