@@ -4,3 +4,13 @@ body {
 .leaflet-container {
   background-color: rgb(178, 210, 222);
 }
+.popup {
+  justify-content: center;
+  flex-direction: column; 
+}
+
+.imagePopup {
+  justify-content: center;
+  align-items: center;
+}
+
